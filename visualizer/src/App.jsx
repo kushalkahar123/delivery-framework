@@ -120,6 +120,18 @@ function parseCliqMessages(event) {
 
   if (messages.length === 0) return [event];
 
+  if (event.noSplit) {
+    return [{
+      ...event,
+      cliqMessages: messages.map(msg => ({
+        sender: msg.sender,
+        time: msg.dateTimeStr,
+        content: msg.messageContent
+      })),
+      artifactContent: '',
+    }];
+  }
+
   // Group by day
   const dayGroups = {};
 
