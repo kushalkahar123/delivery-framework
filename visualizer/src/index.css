@@ -1,0 +1,437 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-dark: #0A0A0A;
+  --bg-panel: #141414;
+  --bg-hover: #1F1F1F;
+  --border-subtle: #262626;
+  --text-primary: #F3F4F6;
+  --text-secondary: #9CA3AF;
+  --text-muted: #6B7280;
+  --accent: #4F46E5;
+  --accent-hover: #4338CA;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --font-sans: 'Inter', sans-serif;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Base Layout */
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 350px;
+  min-width: 350px;
+  background-color: var(--bg-panel);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 24px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.sidebar-header h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.sidebar-header p {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.timeline {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+/* Timeline Events */
+.phase-header {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin: 24px 0 12px 12px;
+  font-weight: 600;
+}
+
+.event-card {
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.event-card:hover {
+  background-color: var(--bg-hover);
+}
+
+.event-card.active {
+  background-color: var(--bg-hover);
+  border-color: var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+
+.event-date {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.event-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.event-meta {
+  display: flex;
+  gap: 8px;
+}
+
+.badge {
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background-color: #262626;
+  color: #D1D5DB;
+}
+
+.badge.format {
+  background-color: rgba(79, 70, 229, 0.2);
+  color: #A5B4FC;
+}
+
+/* Main Viewer */
+.viewer-container {
+  flex: 1;
+  background-color: var(--bg-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.empty-state {
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.simulator-wrapper {
+  width: 90%;
+  max-width: 1200px;
+  height: 85%;
+  background-color: var(--bg-panel);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: fadeScale 0.3s ease;
+}
+
+@keyframes fadeScale {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Markdown styling for Notion simulator */
+.markdown-content {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif;
+  color: #D1D5DB;
+  line-height: 1.6;
+}
+
+.markdown-content h1 { color: #F3F4F6; margin: 1em 0 0.5em; border-bottom: 1px solid #374151; padding-bottom: 0.3em; }
+.markdown-content h2 { color: #F3F4F6; margin: 1em 0 0.5em; }
+.markdown-content h3 { color: #F3F4F6; margin: 1em 0 0.5em; }
+.markdown-content p { margin-bottom: 1em; }
+.markdown-content a { color: #60A5FA; }
+.markdown-content blockquote { border-left: 3px solid #4B5563; padding-left: 1em; color: #9CA3AF; margin: 1em 0; }
+.markdown-content code { background: #374151; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace; font-size: 0.9em; }
+.markdown-content pre { background: #1F2937; padding: 1em; border-radius: 6px; overflow-x: auto; margin: 1em 0; }
+.markdown-content pre code { background: none; padding: 0; }
+.markdown-content ul, .markdown-content ol { padding-left: 2em; margin-bottom: 1em; }
+.markdown-content table { 
+  width: 100%; 
+  border-collapse: separate; 
+  border-spacing: 0;
+  margin: 1.5em 0; 
+  font-size: 0.9em;
+  background-color: #1A1A1A;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border: 1px solid #374151;
+}
+.markdown-content th, .markdown-content td { 
+  border-bottom: 1px solid #374151;
+  border-right: 1px solid #374151;
+  padding: 0.75em 1.25em; 
+  text-align: left; 
+  vertical-align: top;
+  line-height: 1.5;
+}
+.markdown-content th:last-child, .markdown-content td:last-child {
+  border-right: none;
+}
+.markdown-content tr:last-child td {
+  border-bottom: none;
+}
+.markdown-content th { 
+  background: #262626; 
+  font-weight: 600;
+  color: #F3F4F6;
+}
+.markdown-content tr:nth-child(even) {
+  background-color: #141414;
+}
+
+/* Simulators Base */
+.sim-header {
+  height: 48px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 12px;
+  background-color: #111111;
+}
+
+.sim-content {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Notion Simulator */
+.notion-layout {
+  display: flex;
+  height: 100%;
+}
+.notion-sidebar {
+  width: 240px;
+  background-color: #1A1A1A;
+  border-right: 1px solid #262626;
+  padding: 16px;
+  color: #A3A3A3;
+  font-size: 0.85rem;
+}
+.notion-main {
+  flex: 1;
+  padding: 60px 80px;
+  background-color: #141414;
+  overflow-y: auto;
+}
+
+/* Meeting Simulator */
+.meeting-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #000;
+}
+.meeting-grid {
+  flex: 1;
+  display: flex;
+  gap: 16px;
+  padding: 24px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.meeting-video {
+  background-color: #262626;
+  border-radius: 12px;
+  aspect-ratio: 16/9;
+  width: calc(50% - 8px);
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.meeting-video.main-speaker {
+  width: 100%;
+  max-width: 800px;
+}
+.video-name {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(0,0,0,0.6);
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+.meeting-controls {
+  height: 80px;
+  background-color: #1A1A1A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.control-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  background-color: #333;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.control-btn.end {
+  background-color: #EF4444;
+}
+
+/* Mail Simulator */
+.mail-layout {
+  display: flex;
+  height: 100%;
+}
+.mail-sidebar {
+  width: 200px;
+  border-right: 1px solid var(--border-subtle);
+  padding: 16px;
+}
+.mail-list {
+  width: 300px;
+  border-right: 1px solid var(--border-subtle);
+  overflow-y: auto;
+}
+.mail-item {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  cursor: pointer;
+}
+.mail-item.active { background-color: #1A1A1A; }
+.mail-item-sender { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+.mail-item-subject { font-size: 0.85rem; color: #A3A3A3; }
+.mail-viewer {
+  flex: 1;
+  padding: 32px;
+  overflow-y: auto;
+}
+
+/* Cliq Simulator */
+.cliq-layout {
+  display: flex;
+  height: 100%;
+}
+.cliq-sidebar {
+  width: 240px;
+  border-right: 1px solid var(--border-subtle);
+  background-color: #18181B;
+  padding: 16px;
+}
+.cliq-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.cliq-messages {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.cliq-message {
+  display: flex;
+  gap: 12px;
+}
+.cliq-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  background-color: #3F3F46;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+.cliq-bubble {
+  background-color: #27272A;
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 8px;
+  max-width: 80%;
+}
+.cliq-input-area {
+  padding: 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+.cliq-input {
+  width: 100%;
+  background-color: #27272A;
+  border: 1px solid #3F3F46;
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: white;
+  outline: none;
+}
+
+/* Figma Simulator */
+.figma-layout {
+  display: flex;
+  height: 100%;
+  background-color: #1E1E1E;
+}
+.figma-toolbar {
+  width: 48px;
+  background-color: #2C2C2C;
+  border-right: 1px solid #000;
+}
+.figma-canvas {
+  flex: 1;
+  background-color: #E5E5E5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.figma-frame {
+  background: white;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  padding: 40px;
+  color: #000;
+  width: 80%;
+  height: 80%;
+  overflow-y: auto;
+}
