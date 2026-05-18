@@ -1,10 +1,11 @@
 import React from 'react';
-import { LayoutTemplate, Video, MessageSquare, FileText, PenTool } from 'lucide-react';
+import { LayoutTemplate, Video, MessageSquare, FileText, PenTool, FileType2 } from 'lucide-react';
 import NotionSimulator from './simulators/NotionSimulator';
 import MeetingSimulator from './simulators/MeetingSimulator';
 import CliqSimulator from './simulators/CliqSimulator';
 import MailSimulator from './simulators/MailSimulator';
 import FigmaSimulator from './simulators/FigmaSimulator';
+import PDFSimulator from './simulators/PDFSimulator';
 
 export default function MainViewer({ event }) {
   if (!event) {
@@ -18,6 +19,12 @@ export default function MainViewer({ event }) {
   const formatLower = event.format.toLowerCase();
 
   const renderSimulator = () => {
+    if (formatLower.includes('pdf')) {
+      return <PDFSimulator event={event} />;
+    }
+    if (formatLower.includes('figma')) {
+      return <FigmaSimulator event={event} />;
+    }
     if (formatLower.includes('notion')) {
       return <NotionSimulator event={event} />;
     }
@@ -30,10 +37,7 @@ export default function MainViewer({ event }) {
     if (formatLower.includes('mail')) {
       return <MailSimulator event={event} />;
     }
-    if (formatLower.includes('figma')) {
-      return <FigmaSimulator event={event} />;
-    }
-    
+
     // Fallback if we don't have a specific simulator
     return (
       <div style={{ padding: '24px', color: '#A3A3A3', textAlign: 'center' }}>
@@ -45,11 +49,12 @@ export default function MainViewer({ event }) {
   };
 
   const getIcon = () => {
+    if (formatLower.includes('pdf')) return <FileType2 size={18} />;
+    if (formatLower.includes('figma')) return <PenTool size={18} />;
     if (formatLower.includes('notion')) return <LayoutTemplate size={18} />;
     if (formatLower.includes('meeting')) return <Video size={18} />;
     if (formatLower.includes('cliq')) return <MessageSquare size={18} />;
     if (formatLower.includes('mail')) return <FileText size={18} />;
-    if (formatLower.includes('figma')) return <PenTool size={18} />;
     return <FileText size={18} />;
   };
 
