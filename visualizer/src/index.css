@@ -447,19 +447,49 @@ body {
   color: #555 !important;
   border-left-color: #D1D5DB !important;
 }
-.figma-frame-content th {
+.figma-frame-content code {
   background: #F3F4F6 !important;
   color: #111 !important;
+}
+.figma-frame-content table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  margin: 1.5em 0 !important;
+  font-size: 0.9em !important;
+  background-color: #FFFFFF !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+  border: 1px solid #E5E7EB !important;
+}
+.figma-frame-content th,
+.figma-frame-content td {
+  border-bottom: 1px solid #E5E7EB !important;
+  border-right: 1px solid #E5E7EB !important;
+  padding: 0.75em 1.25em !important;
+  text-align: left !important;
+  vertical-align: top !important;
+  line-height: 1.5 !important;
+  color: #111111 !important;
+}
+.figma-frame-content th:last-child,
+.figma-frame-content td:last-child {
+  border-right: none !important;
+}
+.figma-frame-content tr:last-child td {
+  border-bottom: none !important;
+}
+.figma-frame-content th {
+  background: #F3F4F6 !important;
+  font-weight: 600 !important;
+  color: #111111 !important;
 }
 .figma-frame-content tr:nth-child(even) {
   background-color: #FAFAFA !important;
 }
-.figma-frame-content td, .figma-frame-content th {
-  border-color: #E5E7EB !important;
-}
-.figma-frame-content code {
-  background: #F3F4F6 !important;
-  color: #111 !important;
+.figma-frame-content tr:nth-child(odd) {
+  background-color: #FFFFFF !important;
 }
 
 /* PDF Simulator */
@@ -511,19 +541,49 @@ body {
   color: #555 !important;
   border-left-color: #D1D5DB !important;
 }
-.pdf-body th {
+.pdf-body code {
   background: #F3F4F6 !important;
   color: #111 !important;
+}
+.pdf-body table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  margin: 1.5em 0 !important;
+  font-size: 0.9em !important;
+  background-color: #FFFFFF !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+  border: 1px solid #E5E7EB !important;
+}
+.pdf-body th,
+.pdf-body td {
+  border-bottom: 1px solid #E5E7EB !important;
+  border-right: 1px solid #E5E7EB !important;
+  padding: 0.75em 1.25em !important;
+  text-align: left !important;
+  vertical-align: top !important;
+  line-height: 1.5 !important;
+  color: #111111 !important;
+}
+.pdf-body th:last-child,
+.pdf-body td:last-child {
+  border-right: none !important;
+}
+.pdf-body tr:last-child td {
+  border-bottom: none !important;
+}
+.pdf-body th {
+  background: #F3F4F6 !important;
+  font-weight: 600 !important;
+  color: #111111 !important;
 }
 .pdf-body tr:nth-child(even) {
   background-color: #FAFAFA !important;
 }
-.pdf-body td, .pdf-body th {
-  border-color: #E5E7EB !important;
-}
-.pdf-body code {
-  background: #F3F4F6 !important;
-  color: #111 !important;
+.pdf-body tr:nth-child(odd) {
+  background-color: #FFFFFF !important;
 }
 .pdf-page-footer {
   margin-top: 32px;
